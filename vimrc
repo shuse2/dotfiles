@@ -112,6 +112,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " ====================
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Townk/vim-autoclose'
 
 
 call neobundle#end()
