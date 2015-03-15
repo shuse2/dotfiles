@@ -74,6 +74,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " ====================
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'leshill/vim-json'
 " ====================
 " NerdTree
 " ====================
@@ -110,9 +111,14 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " ====================
 " Programming
 " ====================
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'wavded/vim-stylus.git'
+NeoBundle 'Valloric/YouCompleteMe.git'
+NeoBundle 'marijnh/tern_for_vim'
 
 
 call neobundle#end()
