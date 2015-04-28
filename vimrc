@@ -122,7 +122,6 @@ NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'kelan/gyp.vim.git'
 NeoBundle 'suan/vim-instant-markdown'
 
-
 call neobundle#end()
 
 " Required:
