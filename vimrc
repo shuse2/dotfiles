@@ -119,6 +119,8 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'wavded/vim-stylus.git'
 NeoBundle 'Valloric/YouCompleteMe.git'
 NeoBundle 'marijnh/tern_for_vim'
+NeoBundle 'kelan/gyp.vim.git'
+NeoBundle 'suan/vim-instant-markdown'
 
 
 call neobundle#end()
