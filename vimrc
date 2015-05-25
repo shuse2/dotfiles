@@ -88,14 +88,28 @@ nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 " ====================
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'linux' : 'make',
+      \     'unix' : 'gmake',
+      \    },
+      \ }
 
 let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
 " buffer list
 noremap <C-P> :Unite buffer<CR>
 " list
 noremap <C-N> :Unite -buffer-name=file file<CR>
+" Search files
+noremap <C-O> :Unite file_rec/async<CR>
 " recent list
 noremap <C-Z> :Unite file_mru<CR>
+" yank history
+noremap <space>y :Unite history/yank<CR>
 " open by currently opening file
 noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
 " split
