@@ -1,0 +1,28 @@
+# update homebrew
+update
+
+# upgrade formulas
+upgrade
+
+# install tools
+install brew-cask
+install node
+install zsh
+install xz
+install go
+install cmake
+install macvim
+install ansible
+install tree
+install android-ndk
+install android-sdk
+install ant
+
+# install using cask
+cask install google-chrome
+cask install virtualbox
+cask install vagrant
+
+# clean up
+clean
+
