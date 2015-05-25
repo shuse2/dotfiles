@@ -104,8 +104,6 @@ let g:unite_source_history_yank_enable=1
 noremap <C-P> :Unite buffer<CR>
 " list
 noremap <C-N> :Unite -buffer-name=file file<CR>
-" Search files
-noremap <C-O> :Unite file_rec/async<CR>
 " recent list
 noremap <C-Z> :Unite file_mru<CR>
 " yank history
@@ -136,6 +134,8 @@ NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'kelan/gyp.vim.git'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'mxw/vim-jsx'
+
+let g:ycm_add_preview_to_completeopt=0
 
 call neobundle#end()
 
