@@ -6,6 +6,7 @@ upgrade
 
 # install tools
 install brew-cask
+install git
 install node
 install zsh
 install xz
@@ -17,9 +18,13 @@ install tree
 install android-ndk
 install android-sdk
 install ant
+install wget
+install openssl
 
 # install using cask
 cask install google-chrome
+cask install google-drive
+cask install firefox
 cask install virtualbox
 cask install vagrant
 
