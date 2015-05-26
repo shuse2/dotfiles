@@ -22,4 +22,3 @@ git submodule update --init --recursive
 cd /.vim/bundle/vimproc.vim/
 make -f make_mac.mak
 ```
-

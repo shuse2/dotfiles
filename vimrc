@@ -132,6 +132,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " Programming
 " ====================
 NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'digitaltoad/vim-jade'
@@ -143,6 +144,7 @@ NeoBundle 'kelan/gyp.vim.git'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'mxw/vim-jsx'
 
+" let YCM to select first suggestion
 let g:ycm_key_select_completion = '<CR>'
 
 call neobundle#end()
