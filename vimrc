@@ -80,8 +80,8 @@ NeoBundle 'leshill/vim-json'
 " NerdTree
 " ====================
 NeoBundle 'scrooloose/nerdtree'
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
@@ -102,22 +102,28 @@ NeoBundle 'Shougo/vimproc.vim', {
 
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
+let g:unite_source_file_mru_limit=50
+let g:unite_source_file_mru_filename_format=''
+
+" Current Dir
+noremap <C-c> :UniteWithBufferDir -buffer-name=files file<CR>
+" recent list
+noremap <C-R> :Unite file_mru<CR>
 " buffer list
 noremap <C-P> :Unite buffer<CR>
+" open bookmark
+noremap <C-B> :Unite bookmark<CR>
 " list
 noremap <C-N> :Unite -buffer-name=file file<CR>
-" recent list
-noremap <C-Z> :Unite file_mru<CR>
 " yank history
-noremap <space>y :Unite history/yank<CR>
-" open by currently opening file
-noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+noremap <C-Y> :Unite history/yank<CR>
+
 " split
 au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
 " Split vertical
-au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 " end with 2 ESC key
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
@@ -137,7 +143,7 @@ NeoBundle 'kelan/gyp.vim.git'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'mxw/vim-jsx'
 
-let g:ycm_add_preview_to_completeopt=0
+let g:ycm_key_select_completion = '<CR>'
 
 call neobundle#end()
 
