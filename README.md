@@ -22,3 +22,12 @@ git submodule update --init --recursive
 cd /.vim/bundle/vimproc.vim/
 make -f make_mac.mak
 ```
+
+### OmniSharp
+```
+cd ~/.vim/bundle
+cd omnisharp-vim
+git submodule update --init --recursive
+cd server
+xbuild
+```

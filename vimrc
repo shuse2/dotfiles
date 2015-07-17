@@ -38,6 +38,7 @@ set showmatch
 set laststatus=2
 set cursorline
 set ttyfast
+set autoread
 " spaces
 set tabstop=4
 set softtabstop=0
@@ -108,7 +109,7 @@ let g:unite_source_file_mru_filename_format=''
 " Current Dir
 noremap <C-c> :UniteWithBufferDir -buffer-name=files file<CR>
 " recent list
-noremap <C-R> :Unite file_mru<CR>
+noremap <C-M> :Unite file_mru<CR>
 " buffer list
 noremap <C-P> :Unite buffer<CR>
 " open bookmark
@@ -143,9 +144,13 @@ NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'kelan/gyp.vim.git'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'mxw/vim-jsx'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'raichoo/haskell-vim'
+NeoBundle 'OmniSharp/omnisharp-vim'
 
 " let YCM to select first suggestion
 let g:ycm_key_select_completion = '<CR>'
+let g:OmniSharp_selector_ui = 'unite'  " Use unite.vim
 
 call neobundle#end()
 
