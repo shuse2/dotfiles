@@ -146,11 +146,20 @@ NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'raichoo/haskell-vim'
-NeoBundle 'OmniSharp/omnisharp-vim'
+NeoBundle 'OmniSharp/omnisharp-vim', {
+\   'autoload': {'filetypes': ['cs']},
+\   'build': {
+\     'mac': 'xbuild server/OmniSharp.sln',
+\     'unix': 'xbuild server/OmniSharp.sln',
+\   }
+\ }
+NeoBundle 'tpope/vim-dispatch'
 
 " let YCM to select first suggestion
 let g:ycm_key_select_completion = '<CR>'
-let g:OmniSharp_selector_ui = 'unite'  " Use unite.vim
+let g:OmniSharp_selector_ui = 'unite'
+
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
 call neobundle#end()
 

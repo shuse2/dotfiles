@@ -31,3 +31,18 @@ git submodule update --init --recursive
 cd server
 xbuild
 ```
+#### if OmniSharp doesn't work
+```
+brew update
+brew upgrade brew-cask
+brew uninstall macvim
+brew install macvim --with-lua --override-system-vim --with-client-server
+:NeoBundleUpdate
+cd youcompleteme & git submodule update --init --recursive
+```
+
+
+### vim-go
+```
+:GoInstallBinaries
+```
