@@ -158,6 +158,8 @@ NeoBundle 'tpope/vim-dispatch'
 " let YCM to select first suggestion
 let g:ycm_key_select_completion = '<CR>'
 let g:OmniSharp_selector_ui = 'unite'
+let g:Omnisharp_start_server = 0
+let g:Omnisharp_stop_server = 0
 
 augroup omnisharp_commands
   autocmd!

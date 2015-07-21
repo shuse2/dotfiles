@@ -31,6 +31,11 @@ git submodule update --init --recursive
 cd server
 xbuild
 ```
+
+#### run server manually
+```
+alias ominisharp="mono PATH_TO_DOTFILES/vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp.exe"
+```
 #### if OmniSharp doesn't work
 uninstall old mono
 http://www.mono-project.com/docs/about-mono/supported-platforms/osx/
