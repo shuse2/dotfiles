@@ -145,6 +145,7 @@ NeoBundle 'kelan/gyp.vim.git'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'wesQ3/vim-windowswap'
 NeoBundle 'raichoo/haskell-vim'
 NeoBundle 'OmniSharp/omnisharp-vim', {
 \   'autoload': {'filetypes': ['cs']},
