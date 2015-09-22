@@ -71,3 +71,9 @@ brew install mono or upgrade mono
 ```
 :GoInstallBinaries
 ```
+
+### Markdown-preview
+[sudo] npm -g install instant-markdown-d
+
+
+Copy the after/ftplugin/markdown/instant-markdown.vim file from this repo into your ~/.vim/after/ftplugin/markdown/ (creating directories as necessary)
