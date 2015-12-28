@@ -27,6 +27,7 @@ cask install google-drive
 cask install firefox
 cask install virtualbox
 cask install vagrant
+cask install alfred
 
 # clean up
 clean
