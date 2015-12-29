@@ -4,6 +4,12 @@ update
 # upgrade formulas
 upgrade
 
+# tap for font
+brew tap sanemat/font
+install --powerline --vim-powerline ricty
+# $ cp -f /usr/local/Cellar/ricty/3.2.4/share/fonts/Ricty*.ttf ~/Library/Fonts/
+# $ fc-cache -vf
+
 # install tools
 install brew-cask
 install git

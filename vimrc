@@ -4,8 +4,8 @@ let mapleader = "\\"
 " Set color scheme
 " ====================
 syntax enable
-colorscheme molokai
-let g:molokai_original = 1
+set background=dark
+colorscheme solarized
 
 " ====================
 " mouse options
