@@ -51,6 +51,9 @@ set number
 set imdisable
 set completeopt=menuone
 
+" Set for powerline
+set guifont=Ricty\ Regular\ for\ Powerline:h14
+
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
@@ -77,6 +80,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'leshill/vim-json'
+NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 " ====================
 " NerdTree
 " ====================
