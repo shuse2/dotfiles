@@ -16,6 +16,7 @@ install git
 install node
 install zsh
 install xz
+install z
 install go
 install cmake
 install macvim
@@ -23,7 +24,6 @@ install ansible
 install tree
 install android-ndk
 install android-sdk
-install ant
 install wget
 install openssl
 
@@ -34,6 +34,7 @@ cask install firefox
 cask install virtualbox
 cask install vagrant
 cask install alfred
+cask install xtrafinder
 
 # clean up
 clean
