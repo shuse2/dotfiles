@@ -142,6 +142,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'fatih/vim-go'
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 NeoBundle 'wavded/vim-stylus.git'
 NeoBundle 'Valloric/YouCompleteMe.git'
 NeoBundle 'marijnh/tern_for_vim'
