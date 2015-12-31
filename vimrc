@@ -143,6 +143,11 @@ NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'fatih/vim-go'
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 NeoBundle 'wavded/vim-stylus.git'
 NeoBundle 'Valloric/YouCompleteMe.git'
 NeoBundle 'marijnh/tern_for_vim'
