@@ -113,7 +113,7 @@ let g:unite_source_file_mru_filename_format=''
 " Current Dir
 noremap <C-c> :UniteWithBufferDir -buffer-name=files file<CR>
 " recent list
-noremap <C-V> :Unite file_mru<CR>
+noremap <C-M> :Unite file_mru<CR>
 " buffer list
 noremap <C-P> :Unite buffer<CR>
 " open bookmark
