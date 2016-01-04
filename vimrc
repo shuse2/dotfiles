@@ -43,7 +43,7 @@ set autoread
 set tabstop=4
 set softtabstop=0
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set smarttab
 set number
 
@@ -157,6 +157,17 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'wesQ3/vim-windowswap'
 NeoBundle 'raichoo/haskell-vim'
 NeoBundle 'tpope/vim-dispatch'
+
+" Set coffeescript
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+" Set indent for coffee file
+autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+" auto save compile
+autocmd BufWritePost *.coffee silent make!
+"Show error on different window
+autocmd QuickFixCmdPost * nested cwindow | redraw!
+" C-C then compile
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 " let YCM to select first suggestion
 let g:ycm_key_select_completion = '<CR>'
