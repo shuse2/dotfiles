@@ -13,3 +13,5 @@ export PATH=$GOPATH/bin:$PATH
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+alias l="ls -al"

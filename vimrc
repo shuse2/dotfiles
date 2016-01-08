@@ -150,7 +150,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 NeoBundle 'wavded/vim-stylus.git'
 NeoBundle 'Valloric/YouCompleteMe.git'
-NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'kelan/gyp.vim.git'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'kchmck/vim-coffee-script'
