@@ -136,7 +136,6 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " ====================
 " Programming
 " ====================
-NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Townk/vim-autoclose'
@@ -148,6 +147,18 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 4
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': ['html', 'javascript'],
+                           \ 'passive_filetypes': [] }
 NeoBundle 'wavded/vim-stylus.git'
 NeoBundle 'Valloric/YouCompleteMe.git'
 NeoBundle 'kelan/gyp.vim.git'
@@ -156,6 +167,32 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'wesQ3/vim-windowswap'
 NeoBundle 'raichoo/haskell-vim'
 NeoBundle 'tpope/vim-dispatch'
+" JS settings
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'moll/vim-node'
+let g:syntastic_javascript_checkers = ['jshint']
+" Custom syntastic settings:
+function s:find_jshintrc(dir)
+    let l:found = globpath(a:dir, '.jshintrc')
+    if filereadable(l:found)
+        return l:found
+    endif
+
+    let l:parent = fnamemodify(a:dir, ':h')
+    if l:parent != a:dir
+        return s:find_jshintrc(l:parent)
+    endif
+
+    return "~/.jshintrc"
+endfunction
+
+function UpdateJsHintConf()
+    let l:dir = expand('%:p:h')
+    let l:jshintrc = s:find_jshintrc(l:dir)
+    let g:syntastic_javascript_jshint_args = l:jshintrc
+endfunction
+
+au BufEnter * call UpdateJsHintConf()
 
 " Set coffeescript
 au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
