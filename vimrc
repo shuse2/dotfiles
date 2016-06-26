@@ -156,9 +156,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 4
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['html', 'javascript', 'go'],
-                           \ 'passive_filetypes': [] }
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['html', 'javascript', 'go']}
 NeoBundle 'wavded/vim-stylus.git'
 NeoBundle 'Valloric/YouCompleteMe.git'
 NeoBundle 'kelan/gyp.vim.git'
@@ -170,7 +170,7 @@ NeoBundle 'tpope/vim-dispatch'
 " JS settings
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'moll/vim-node'
-let g:syntastic_javascript_checkers = ['jshint']
+NeoBundle 'mtscout6/syntastic-local-eslint.vim'
 
 " Set coffeescript
 au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
