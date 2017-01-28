@@ -81,10 +81,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'leshill/vim-json', {'for': 'json'}
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'jiangmiao/auto-pairs'
 " ====================
 " NerdTree
 " ====================
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
@@ -130,6 +132,9 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " ====================
 Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " " Use neocomplete.
