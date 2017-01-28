@@ -86,11 +86,22 @@ Plug 'jiangmiao/auto-pairs'
 " NerdTree
 " ====================
 Plug 'scrooloose/nerdtree'
+let NERDTreeShowHidden=1
 Plug 'scrooloose/nerdcommenter'
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" " Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" " Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" " Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" " Enable trimming of trailing whitepace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 " ====================
 " Unite
