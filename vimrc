@@ -62,29 +62,25 @@ if has('vim_starting')
    set nocompatible               " Be iMproved
  endif
 
- " Required:
- set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+if !filereadable(expand('~/.vim/autoload/plug.vim'))
+    ! curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
+call plug#begin('~/.vim/plugged')
 
 " Start bundle setups
 " ====================
 " General
 " ====================
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'leshill/vim-json'
-NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'leshill/vim-json', {'for': 'json'}
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 " ====================
 " NerdTree
 " ====================
-NeoBundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
@@ -93,17 +89,9 @@ let NERDTreeShowHidden=1
 " ====================
 " Unite
 " ====================
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'linux' : 'make',
-      \     'unix' : 'gmake',
-      \    },
-      \ }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/vimproc.vim', { 'dir': '~/.vim/plugged/vimproc.vim', 'do': 'make' }
 
 let g:unite_enable_start_insert=0
 let g:unite_source_history_yank_enable=1
@@ -136,61 +124,22 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " ====================
 " Programming
 " ====================
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'fatih/vim-go'
-let g:syntastic_go_checkers = ['go',  'golint', 'govet', 'errcheck']
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 4
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['html', 'javascript', 'go']}
-NeoBundle 'wavded/vim-stylus.git'
-NeoBundle 'Valloric/YouCompleteMe.git'
-NeoBundle 'kelan/gyp.vim.git'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'wesQ3/vim-windowswap'
-NeoBundle 'raichoo/haskell-vim'
-NeoBundle 'tpope/vim-dispatch'
-" JS settings
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'moll/vim-node'
-NeoBundle 'mtscout6/syntastic-local-eslint.vim'
+" GO
+Plug 'fatih/vim-go', {'for': 'go'}
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
 
-" Set coffeescript
-au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-" Set indent for coffee file
-autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
-" auto save compile
-autocmd BufWritePost *.coffee silent make!
-"Show error on different window
-autocmd QuickFixCmdPost * nested cwindow | redraw!
-" C-C then compile
-nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+" JS
+Plug 'mxw/vim-jsx', {'for': 'jsx'}
+Plug 'jelera/vim-javascript-syntax', {'for': 'js'}
+Plug 'moll/vim-node', {'for': 'js'}
+Plug 'walm/jshint.vim', {'for': 'js'}
 
-" let YCM to select first suggestion
-let g:ycm_key_select_completion = '<CR>'
 
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+" Initialize plugin system
+call plug#end()
+endif
