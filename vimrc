@@ -50,6 +50,9 @@ set number
 set wildmenu
 set history=5000
 
+" disable folding
+set nofoldenable
+
 
 " Set IME disable
 set imdisable
@@ -160,9 +163,12 @@ inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
 
 " GO
 Plug 'fatih/vim-go', {'for': 'go'}
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'], 'active_filetypes': ['javascript'] }
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
+let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_javascript_flow_exe = '`npm bin`/flow'
+let g:syntastic_javascript_eslint_exec = '`npm bin`/eslint'
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -175,7 +181,6 @@ let g:go_highlight_build_constraints = 1
 Plug 'mxw/vim-jsx', {'for': 'jsx'}
 Plug 'jelera/vim-javascript-syntax', {'for': 'js'}
 Plug 'moll/vim-node', {'for': 'js'}
-Plug 'walm/jshint.vim', {'for': 'js'}
 
 
 " Initialize plugin system
