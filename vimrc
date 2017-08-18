@@ -40,10 +40,10 @@ set cursorline
 set ttyfast
 set autoread
 " spaces
-set tabstop=4
+set tabstop=2
 set softtabstop=0
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set smarttab
 set number
 
@@ -144,7 +144,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " ====================
 " Programming
 " ====================
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -163,12 +163,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
 
 " GO
 Plug 'fatih/vim-go', {'for': 'go'}
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'], 'active_filetypes': ['javascript'] }
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:go_list_type = "quickfix"
-let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_javascript_flow_exe = '`npm bin`/flow'
-let g:syntastic_javascript_eslint_exec = '`npm bin`/eslint'
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -181,6 +176,23 @@ let g:go_highlight_build_constraints = 1
 Plug 'mxw/vim-jsx', {'for': 'jsx'}
 Plug 'jelera/vim-javascript-syntax', {'for': 'js'}
 Plug 'moll/vim-node', {'for': 'js'}
+Plug 'flowtype/vim-flow'
+"Use locally installed flow
+let g:flow#showquickfix = 0
+let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
+if matchstr(local_flow, "^\/\\w") == ''
+    let local_flow= getcwd() . "/" . local_flow
+endif
+if executable(local_flow)
+  let g:flow#flowpath = local_flow
+endif
+let g:ale_completion_enabled = 1
+let g:ale_linters = {
+\   'javascript': ['eslint', 'flow'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['eslint', 'flow'],
+\}
 
 
 " Initialize plugin system
