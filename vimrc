@@ -42,7 +42,6 @@ set autoread
 " spaces
 set tabstop=2
 set softtabstop=0
-set expandtab
 set shiftwidth=2
 set smarttab
 set number
@@ -85,6 +84,8 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'leshill/vim-json', {'for': 'json'}
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'jiangmiao/auto-pairs'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-surround'
 " ====================
 " NerdTree
 " ====================
