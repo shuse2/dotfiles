@@ -82,7 +82,7 @@ call plug#begin('~/.vim/plugged')
 " ====================
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'leshill/vim-json', {'for': 'json'}
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
@@ -165,6 +165,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
 " GO
 Plug 'fatih/vim-go', {'for': 'go'}
 let g:go_list_type = "quickfix"
+set nocursorcolumn
+syntax sync minlines=256
+set re=1
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
