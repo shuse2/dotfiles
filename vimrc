@@ -181,6 +181,7 @@ Plug 'mxw/vim-jsx', {'for': 'jsx'}
 Plug 'jelera/vim-javascript-syntax', {'for': 'js'}
 Plug 'moll/vim-node', {'for': 'js'}
 Plug 'flowtype/vim-flow'
+Plug 'leafgarland/typescript-vim'
 "Use locally installed flow
 let g:flow#showquickfix = 0
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
