@@ -158,9 +158,19 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+" Plugin key-mappings.
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
 inoremap <expr><CR> neocomplete#smart_close_popup() . "\<CR>"
 inoremap <expr><TAB> pumvisible() ? "\<Down>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<S-TAB>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" " Close popup by <Space>.
+inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>""
 
 " GO
 Plug 'fatih/vim-go', {'for': 'go'}
@@ -194,9 +204,11 @@ endif
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
+\   'typescript': ['tslint', 'tsserver'],
 \}
 let g:ale_fixers = {
 \   'javascript': ['eslint', 'flow'],
+\   'typescript': ['tslint', 'tsserver'],
 \}
 
 
