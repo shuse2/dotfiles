@@ -58,7 +58,8 @@ set imdisable
 set completeopt=menuone
 
 " Set for powerline
-set guifont=Ricty\ Regular\ for\ Powerline:h14
+set guifont=Cica:h14
+set encoding=UTF-8
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
@@ -86,6 +87,12 @@ Plug 'leshill/vim-json', {'for': 'json'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
 " ====================
 " NerdTree
 " ====================
@@ -95,6 +102,8 @@ Plug 'scrooloose/nerdcommenter'
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>r :NERDTreeFind<CR>
+
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -114,7 +123,9 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/vimproc.vim', { 'dir': '~/.vim/plugged/vimproc.vim', 'do': 'make' }
+Plug 'ctrlpvim/ctrlp.vim'
 
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:unite_enable_start_insert=0
 let g:unite_source_history_yank_enable=1
 let g:unite_source_file_mru_limit=50
