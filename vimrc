@@ -58,7 +58,7 @@ set imdisable
 set completeopt=menuone
 
 " Set for powerline
-set guifont=Cica:h14
+set guifont=Menlo:h12
 set encoding=UTF-8
 
 " Note: Skip initialization for vim-tiny or vim-small.
