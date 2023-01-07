@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/Users/shuse2/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["coc.nvim"] = {
+    loaded = true,
+    path = "/Users/shuse2/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/shuse2/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -183,6 +188,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/shuse2/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-go"] = {
+    loaded = true,
+    path = "/Users/shuse2/.local/share/nvim/site/pack/packer/start/vim-go",
+    url = "https://github.com/fatih/vim-go"
   }
 }
 
