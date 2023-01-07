@@ -301,12 +301,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Linting
-Plug 'dense-analysis/ale'
-let g:ale_linters = {
-\ 'javascript': ['eslint', 'prettier'],
-\ 'typescript': ['tslint', 'tsserver'],
-\}
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
