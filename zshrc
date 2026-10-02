@@ -27,7 +27,9 @@ nvm() {
   nvm "$@"
 }
 
-. /opt/homebrew/etc/profile.d/z.sh
+z_sh="${HOMEBREW_PREFIX:-/opt/homebrew}/etc/profile.d/z.sh"
+[[ -r "$z_sh" ]] && . "$z_sh"
+unset z_sh
 
 export GPG_TTY=$TTY
 
