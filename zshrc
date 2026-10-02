@@ -1,29 +1,73 @@
 # Executes commands at the start of an interactive session.
-# also, setup path and settings
+
+# Docker CLI completions. Must be on fpath before Prezto runs compinit.
+fpath=(/Users/shuse2/.docker/completions $fpath)
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-export GOPATH=$HOME/Documents/20_projects/gohome
-export PATH="$PATH:$GOPATH/bin"
-
-. `brew --prefix`/etc/profile.d/z.sh
+# Customize to your needs...
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-alias l="ls -al"
-export MODE=local
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
+# nvm: put the default Node on PATH now, and load nvm.sh (~0.9 s) on first use.
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export GPG_TTY=$(tty)
+if [[ -r "$NVM_DIR/alias/default" ]]; then
+  nvm_default_bins=("$NVM_DIR"/versions/node/v${$(<"$NVM_DIR/alias/default")#v}*(N/nOn))
+  (( ${#nvm_default_bins} )) && export PATH="${nvm_default_bins[1]}/bin:$PATH"
+  unset nvm_default_bins
+fi
+nvm() {
+  unfunction nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
 
-# lisk autocomplete setup
-LISK_AC_ZSH_SETUP_PATH=/Users/stoda/Library/Caches/lisk-commander/autocomplete/zsh_setup && test -f $LISK_AC_ZSH_SETUP_PATH && source $LISK_AC_ZSH_SETUP_PATH;
+. /opt/homebrew/etc/profile.d/z.sh
+
+export GPG_TTY=$TTY
+
+# rbenv: shims on PATH now, the full init on first use of the rbenv command.
+export PATH="$HOME/.rbenv/shims:$PATH"
+rbenv() {
+  unfunction rbenv
+  eval "$(command rbenv init - zsh)"
+  rbenv "$@"
+}
+
+export GOPATH="$HOME/go"
+# pyenv: shims on PATH is all `pyenv init --path` does.
+export PATH="$HOME/.pyenv/shims:${PATH}"
+export PATH="$GOPATH/bin:${PATH}"
+export PATH="$HOME/flutter:${PATH}"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/shuse2/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/shuse2/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/shuse2/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/shuse2/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export CGO_CFLAGS="-I/opt/homebrew/include"
+export CGO_LDFLAGS="-L/opt/homebrew/lib"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/shuse2/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# bun completions
+[ -s "/Users/shuse2/.bun/_bun" ] && source "/Users/shuse2/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

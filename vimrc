@@ -1,12 +1,8 @@
-let mapleader = "\\"
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
-" ====================
-" Set color scheme
-" ====================
-syntax enable
-set background=dark
-colorscheme solarized
-highlight CursorLine ctermbg=NONE guibg=#073642
+set nocompatible
+let mapleader = "\\"
 
 " ====================
 " mouse options
@@ -19,293 +15,193 @@ endif
 " search
 " ====================
 set ignorecase
+set incsearch
 
 " ====================
 " generic options
 " ====================
 set nobackup
+set nowritebackup
 set noswapfile
-set incsearch
+set hidden
+set autoread
+set history=5000
+set wildmenu
+
+" ====================
+" performance
+" ====================
+set lazyredraw
+" Long lines (minified JS, logs) make syntax highlighting slow.
+set synmaxcol=300
 
 " ====================
 " visual options
 " ====================
 filetype plugin indent on
-set showmode
+" The mode is shown in the statusline.
+set noshowmode
 set title
 set ruler
 set showcmd
 set showmatch
 set laststatus=2
 set cursorline
-set ttyfast
-set autoread
+set number
+set shortmess+=c
+
 " spaces
 set tabstop=2
 set softtabstop=0
 set shiftwidth=2
 set smarttab
-set number
-
-set wildmenu
-set history=5000
 
 " disable folding
 set nofoldenable
-
 
 " Set IME disable
 set imdisable
 set completeopt=menuone
 
-" Set for powerline
 set guifont=Menlo:h12
 set encoding=UTF-8
 
-" Note: Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
+" ====================
+" Built-in packages
+" ====================
+packadd! comment
+packadd! editorconfig
 
-if has('vim_starting')
- if &compatible
-   set nocompatible               " Be iMproved
- endif
-
-
+" ====================
+" Plugins
+" ====================
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
-    ! curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.vim/plugged')
-
-" Start bundle setups
-" ====================
-" General
-" ====================
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'leshill/vim-json', {'for': 'json'}
-" Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-
-" ====================
-" NerdTree
-" ====================
-Plug 'scrooloose/nerdtree'
-let NERDTreeShowHidden=1
-Plug 'scrooloose/nerdcommenter'
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>r :NERDTreeFind<CR>
-
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" " Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" " Add your own custom formats or override the defaults
-" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" " Enable trimming of trailing whitepace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" ====================
-" Unite
-" ====================
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/vimproc.vim', { 'dir': '~/.vim/plugged/vimproc.vim', 'do': 'make' }
 Plug 'ctrlpvim/ctrlp.vim'
-
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:unite_enable_start_insert=0
-let g:unite_source_history_yank_enable=1
-let g:unite_source_file_mru_limit=50
-let g:unite_source_file_mru_filename_format=''
-
-" Current Dir
-noremap <C-c> :UniteWithBufferDir -buffer-name=files file<CR>
-" recent list
-noremap <C-M> :Unite file_mru<CR>
-" buffer list
-noremap <C-P> :Unite buffer<CR>
-" open bookmark
-noremap <C-B> :Unite bookmark<CR>
-" list
-noremap <C-N> :Unite -buffer-name=file file<CR>
-" yank history
-noremap <C-Y> :Unite history/yank<CR>
-
-" split
-au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-" Split vertical
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-" end with 2 ESC key
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+Plug 'lifepillar/vim-solarized8'
+call plug#end()
 
 " ====================
-" Programming
+" Set color scheme
 " ====================
-
-" General
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
 if has('termguicolors')
   set termguicolors
 endif
+syntax enable
+set background=dark
+try
+  colorscheme solarized8
+catch /^Vim\%((\a\+)\)\=:E185/
+  " Not installed yet: run :PlugInstall.
+  colorscheme default
+endtry
 
-" Initialize plugin system
-call plug#end()
-endif
+" ====================
+" Split navigation (tmux passes C-h/j/k/l through to vim)
+" ====================
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" ====================
+" Statusline (replaces vim-airline)
+" ====================
+let s:modes = {
+      \ 'n': ['NORMAL', 'StlNormal'],
+      \ 'i': ['INSERT', 'StlInsert'],
+      \ 'v': ['VISUAL', 'StlVisual'],
+      \ 'V': ['V-LINE', 'StlVisual'],
+      \ "\<C-v>": ['V-BLOCK', 'StlVisual'],
+      \ 'R': ['REPLACE', 'StlReplace'],
+      \ 'c': ['COMMAND', 'StlNormal'],
+      \ 't': ['TERMINAL', 'StlInsert'],
+      \ }
+
+function! StatusLine() abort
+  let l:line = ' %f %m%r%h%w%=%y %{&fenc !=# "" ? &fenc : &enc} [%{&ff}] %3p%% %l:%c '
+  if g:statusline_winid != win_getid()
+    return l:line
+  endif
+  let [l:name, l:group] = get(s:modes, mode(), [mode(), 'StlNormal'])
+  return '%#' . l:group . '# ' . l:name . ' %#StlFile#' . l:line
+endfunction
+
+" Solarized dark palette, same as the airline solarized theme.
+function! s:StatusLineColors() abort
+  highlight StlNormal  guifg=#002b36 guibg=#268bd2 ctermfg=0 ctermbg=4 gui=bold cterm=bold
+  highlight StlInsert  guifg=#002b36 guibg=#859900 ctermfg=0 ctermbg=2 gui=bold cterm=bold
+  highlight StlVisual  guifg=#002b36 guibg=#d33682 ctermfg=0 ctermbg=5 gui=bold cterm=bold
+  highlight StlReplace guifg=#002b36 guibg=#dc322f ctermfg=0 ctermbg=1 gui=bold cterm=bold
+  highlight StlFile    guifg=#93a1a1 guibg=#073642 ctermfg=14 ctermbg=0
+endfunction
+
+augroup statusline
+  autocmd!
+  autocmd ColorScheme * call s:StatusLineColors()
+augroup end
+call s:StatusLineColors()
+set statusline=%!StatusLine()
+
+" ====================
+" File explorer (netrw, replaces NERDTree)
+" ====================
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+" Open files in the window left of the explorer, like NERDTree.
+let g:netrw_browse_split = 4
+
+function! s:RevealInExplorer() abort
+  let l:file = expand('%:t')
+  let l:dir = expand('%:p:h')
+  if exists('t:netrw_lexbufnr') && bufwinnr(t:netrw_lexbufnr) != -1
+    Lexplore
+  endif
+  execute 'Lexplore' fnameescape(l:dir)
+  if l:file !=# ''
+    call search('\V' . escape(l:file, '\') . '\$')
+  endif
+endfunction
+
+" netrw takes <C-h> and <C-l> unless these are mapped elsewhere. Keep them
+" for split navigation.
+nmap <Leader>h <Plug>NetrwHideEdit
+nmap <Leader>l <Plug>NetrwRefresh
+
+nnoremap <silent> <Leader>n :Lexplore<CR>
+nnoremap <silent> <Leader>r :call <SID>RevealInExplorer()<CR>
+
+" ====================
+" Comments (built-in comment package, replaces nerdcommenter)
+" ====================
+" gc / gcc also work. The built-in toggle adds a space after the delimiter.
+nmap <Leader>c<Space> <Plug>(comment-toggle-line)
+xmap <Leader>c<Space> <Plug>(comment-toggle)
+nmap <Leader>cc <Plug>(comment-toggle-line)
+xmap <Leader>cc <Plug>(comment-toggle)
+nmap <Leader>cu <Plug>(comment-toggle-line)
+xmap <Leader>cu <Plug>(comment-toggle)
+
+" ====================
+" Finder (ctrlp, replaces Unite)
+" ====================
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" Inside ctrlp: <C-x> split, <C-v> vsplit, <C-t> tab, <Esc> close.
+let g:ctrlp_map = '<C-N>'
+
+" Current Dir
+nnoremap <silent> <C-c> :CtrlPCurFile<CR>
+" recent list (<C-M> is the same key as Enter, so it moved to <Leader>m)
+nnoremap <silent> <Leader>m :CtrlPMRU<CR>
+" buffer list
+nnoremap <silent> <C-P> :CtrlPBuffer<CR>
+" yank history
+nnoremap <silent> <C-Y> :registers<CR>
