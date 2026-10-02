@@ -6,6 +6,7 @@ let mapleader = "\\"
 syntax enable
 set background=dark
 colorscheme solarized
+highlight CursorLine ctermbg=NONE guibg=#073642
 
 " ====================
 " mouse options
@@ -301,8 +302,9 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+if has('termguicolors')
+  set termguicolors
+endif
 
 " Initialize plugin system
 call plug#end()
